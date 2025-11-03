@@ -35,20 +35,20 @@ Open `.env` and replace the placeholder values with your actual API keys:
 **Current Values You Had:**
 ```env
 # Firebase
-VITE_FIREBASE_API_KEY=AIzaSyDN0vNr8ulD-qVpOUQaesdHtfyBqBIo9Hs
-VITE_FIREBASE_AUTH_DOMAIN=senateway-f2c37.firebaseapp.com
-VITE_FIREBASE_DATABASE_URL=https://senateway-f2c37-default-rtdb.firebaseio.com
-VITE_FIREBASE_PROJECT_ID=senateway-f2c37
-VITE_FIREBASE_STORAGE_BUCKET=senateway-f2c37.firebasestorage.app
-VITE_FIREBASE_MESSAGING_SENDER_ID=118997397813
-VITE_FIREBASE_APP_ID=1:118997397813:web:23c6193d932a01e9d21c7c
-VITE_FIREBASE_MEASUREMENT_ID=G-007DC2JWQ2
+VITE_FIREBASE_API_KEY=your_firebase_api_key_here
+VITE_FIREBASE_AUTH_DOMAIN=your_project.firebaseapp.com
+VITE_FIREBASE_DATABASE_URL=https://your_project-default-rtdb.firebaseio.com
+VITE_FIREBASE_PROJECT_ID=your_project_id
+VITE_FIREBASE_STORAGE_BUCKET=your_project.firebasestorage.app
+VITE_FIREBASE_MESSAGING_SENDER_ID=your_sender_id
+VITE_FIREBASE_APP_ID=your_app_id
+VITE_FIREBASE_MEASUREMENT_ID=your_measurement_id
 
 # EmailJS
-VITE_EMAILJS_SERVICE_ID=service_ay0xwqk
-VITE_EMAILJS_PUBLIC_KEY=1EGw5SZnqNNFre2CR
-VITE_EMAILJS_TEMPLATE_BOOKING_RECEIVED=template_7i5bzvy
-VITE_EMAILJS_TEMPLATE_BOOKING_CONFIRMED=template_ql8yhse
+VITE_EMAILJS_SERVICE_ID=your_service_id
+VITE_EMAILJS_PUBLIC_KEY=your_public_key
+VITE_EMAILJS_TEMPLATE_BOOKING_RECEIVED=your_template_id
+VITE_EMAILJS_TEMPLATE_BOOKING_CONFIRMED=your_template_id
 ```
 
 **Plus add your other API keys:**

@@ -4,21 +4,17 @@
   command = "npm run build"
   publish = "dist"
 
-# Redirects for SPA routing - must exclude assets and API routes
-[[redirects]]
-  from = "/.netlify/functions/*"
-  to = "/.netlify/functions/:splat"
-  status = 200
-  force = true
-
+# Redirects for SPA routing
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
-  force = false
 
-# Environment variables will be set in Netlify dashboard
-# Make sure to set:
-# - VITE_ACCUWEATHER_API_KEY (or ACCUWEATHER_API_KEY for the function)
-# - All other VITE_* environment variables
+# Configure secrets scanning
+# VITE_* variables are meant to be public (client-side), so allow them in build output
+# Ignore documentation files that may contain example values
+[secrets]
+  scanning = { enabled = true }
+  omit_paths = ["MIGRATION_SUMMARY.md", "NETLIFY_DEPLOYMENT.md", "README.md", "README_TESTING.md"]
+
 
