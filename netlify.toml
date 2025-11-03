@@ -10,11 +10,4 @@
   to = "/index.html"
   status = 200
 
-# Configure secrets scanning
-# VITE_* variables are meant to be public (client-side), so allow them in build output
-# Ignore documentation files that may contain example values
-[secrets]
-  scanning = { enabled = true }
-  omit_paths = ["MIGRATION_SUMMARY.md", "NETLIFY_DEPLOYMENT.md", "README.md", "README_TESTING.md"]
-
 
