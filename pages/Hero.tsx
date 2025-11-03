@@ -24,7 +24,7 @@ export function Hero({ onNavigate }: HeroProps) {
               <div className="flex items-center gap-2 mb-4">
             
               </div>
-              <h1 className="text-5xl mb-4 text-white">Welcome to SenateWay Guesthouse</h1>
+              <h1 className="text-5xl mb-4 text-white">Welcome to Senate Way Guesthouse</h1>
               <p className="text-xl mb-6 text-white">
                 Experience comfort and hospitality in the heart of Kimberley. Your perfect stay awaits with modern amenities and exceptional service.
               </p>
@@ -49,28 +49,28 @@ export function Hero({ onNavigate }: HeroProps) {
               <Wifi className="w-8 h-8" />
               <div>
                 <p className="text-white">Free WiFi</p>
-                <p className="text-sm text-blue-100">High-Speed Internet</p>
+                <p className="text-sm text-white/80">High-Speed Internet</p>
               </div>
             </div>
             <div className="flex items-center gap-3">
               <Car className="w-8 h-8" />
               <div>
                 <p className="text-white">Free Parking</p>
-                <p className="text-sm text-blue-100">On-Site Private</p>
+                <p className="text-sm text-white/80">On-Site Private</p>
               </div>
             </div>
             <div className="flex items-center gap-3">
               <Utensils className="w-8 h-8" />
               <div>
                 <p className="text-white">BBQ Facilities</p>
-                <p className="text-sm text-blue-100">Outdoor Area</p>
+                <p className="text-sm text-white/80">Outdoor Area</p>
               </div>
             </div>
             <div className="flex items-center gap-3">
               <Star className="w-8 h-8" />
               <div>
                 <p className="text-white">Top Rated</p>
-                <p className="text-sm text-blue-100">Guest Favorite</p>
+                <p className="text-sm text-white/80">Guest Favorite</p>
               </div>
             </div>
           </div>

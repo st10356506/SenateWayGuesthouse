@@ -1,5 +1,6 @@
 import { MapPin, Phone, Mail } from 'lucide-react';
 import { Button } from './ui/button';
+import { ThemeToggle } from './ui/theme-toggle';
 
 interface HeaderProps {
   currentPage: string;
@@ -18,7 +19,7 @@ export function Header({ currentPage, onNavigate }: HeaderProps) {
   ];
 
   return (
-    <header className="sticky top-0 z-50 bg-white border-b border-border">
+    <header className="sticky top-0 z-50 bg-background border-b border-border">
       <div className="container mx-auto px-4">
         {/* Top bar */}
         <div className="py-2 border-b border-border">
@@ -26,13 +27,14 @@ export function Header({ currentPage, onNavigate }: HeaderProps) {
             <div className="flex items-center gap-6">
               <div className="flex items-center gap-2">
                 <MapPin className="w-4 h-4 text-primary" />
-                <span className="text-sm text-muted-foreground">
-                  Kimberley, South Africa
+                <span className="text-sm text-muted-foreground dark:text-muted-foreground">
+                  10 Senate Way, 8345 Kimberley, South Africa
+
                 </span>
               </div>
               <div className="flex items-center gap-2">
                 <Phone className="w-4 h-4 text-primary" />
-                <span className="text-sm text-muted-foreground">
+                <span className="text-sm text-muted-foreground dark:text-muted-foreground">
                   +27 82 927 8907
                 </span>
               </div>
@@ -40,7 +42,7 @@ export function Header({ currentPage, onNavigate }: HeaderProps) {
 
             <div className="flex items-center gap-2">
               <Mail className="w-4 h-4 text-primary" />
-              <span className="text-sm text-muted-foreground">
+              <span className="text-sm text-muted-foreground dark:text-muted-foreground">
                 vanessa141169@yahoo.com
               </span>
             </div>
@@ -54,14 +56,14 @@ export function Header({ currentPage, onNavigate }: HeaderProps) {
               className="text-primary font-semibold cursor-pointer"
               onClick={() => onNavigate('home')}
             >
-              SenateWay Guesthouse
+              Senate Way Guesthouse
             </h1>
             <p className="text-sm text-muted-foreground">
               Your Home Away From Home
             </p>
           </div>
 
-          <nav className="flex flex-wrap gap-2">
+          <nav className="flex flex-wrap gap-2 items-center">
             {navItems.map((item) => (
               <Button
                 key={item.id}
@@ -71,6 +73,7 @@ export function Header({ currentPage, onNavigate }: HeaderProps) {
                 {item.label}
               </Button>
             ))}
+            <ThemeToggle />
           </nav>
         </div>
       </div>

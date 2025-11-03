@@ -26,9 +26,12 @@ const Slider = React.forwardRef<HTMLInputElement, SliderProps>(
         value={value[0]}
         onChange={handleChange}
         className={cn(
-          'w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer slider',
+          'w-full slider',
           className
         )}
+        style={{
+          height: '8px',
+        }}
         {...props}
       />
     );

@@ -8,22 +8,7 @@ import { useState } from 'react';
 import { database } from '../firebaseConfig';
 import { ref, push } from 'firebase/database';
 import emailjs from 'emailjs-com';
-
-// Google Analytics tracking
-declare global {
-  interface Window {
-    gtag: (...args: any[]) => void;
-  }
-}
-
-const trackEvent = (action: string, category: string, label?: string) => {
-  if (typeof window !== 'undefined' && window.gtag) {
-    window.gtag('event', action, {
-      event_category: category,
-      event_label: label,
-    });
-  }
-};
+import { trackUserInteraction } from '../lib/analytics';
 
 export function Contact() {
   const [formData, setFormData] = useState({
@@ -40,8 +25,8 @@ export function Contact() {
     e.preventDefault();
 
     try {
-      console.log('📧 Starting form submission...');
-      console.log('📧 Form data:', formData);
+      console.log('Starting form submission...');
+      console.log('Form data:', formData);
 
       // Prepare data for Firebase
       const bookingData = {
@@ -52,18 +37,26 @@ export function Contact() {
       };
 
       // Save to Firebase
-      console.log('🔥 Saving to Firebase...');
+      console.log('Saving to Firebase...');
       await push(ref(database, 'bookings'), bookingData);
-      console.log('✅ Saved to Firebase successfully!');
+      console.log('Saved to Firebase successfully!');
 
       // Send email via EmailJS
-      console.log('📧 Sending email via EmailJS...');
+      const emailjsServiceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+      const emailjsTemplateId = import.meta.env.VITE_EMAILJS_TEMPLATE_BOOKING_RECEIVED;
+      const emailjsPublicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
+      if (!emailjsServiceId || !emailjsTemplateId || !emailjsPublicKey) {
+        throw new Error('EmailJS configuration is missing. Please check your environment variables.');
+      }
+
+      console.log('Sending email via EmailJS...');
       await emailjs.send(
-        'service_ay0xwqk', 
-        'template_7i5bzvy',
+        emailjsServiceId, 
+        emailjsTemplateId,
         {
           from_name: formData.name,
-          from_email: 'ypriaram467@gmail.com',
+          from_email: formData.email,
           to_email: formData.email, 
           phone: formData.phone,
           check_in: formData.checkIn,
@@ -71,11 +64,11 @@ export function Contact() {
           guests: formData.guests,
           message: formData.message,
         },
-        '1EGw5SZnqNNFre2CR' 
+        emailjsPublicKey
       );
 
-      console.log('✅ Email sent successfully via EmailJS');
-      trackEvent('booking_request_submitted', 'engagement', 'contact_form');
+      console.log('Email sent successfully via EmailJS');
+      trackUserInteraction('booking');
       alert('Thank you for your booking request! We will contact you shortly.');
 
       // Reset form
@@ -89,7 +82,7 @@ export function Contact() {
         message: '',
       });
     } catch (error) {
-      console.error('❌ Form submission error:', error);
+      console.error('Form submission error:', error);
       alert('There was an error sending your message. Please try again.');
     }
   };

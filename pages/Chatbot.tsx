@@ -5,22 +5,6 @@ import { Input } from './ui/input';
 import { ScrollArea } from './ui/scroll-area';
 import { Send, Bot, User, Loader2 } from 'lucide-react';
 
-// Google Analytics tracking functions
-declare global {
-  interface Window {
-    gtag: (...args: any[]) => void;
-  }
-}
-
-const trackEvent = (action: string, category: string, label?: string) => {
-  if (typeof window !== 'undefined' && window.gtag) {
-    window.gtag('event', action, {
-      event_category: category,
-      event_label: label,
-    });
-  }
-};
-
 interface Message {
   id: number;
   text: string;
@@ -41,7 +25,7 @@ export function Chatbot() {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: 1,
-      text: "Hello! I'm the SenateWay Guesthouse assistant. How can I help you today? Feel free to ask about our rooms, facilities, location, or anything else!",
+      text: "Hello! I'm the Senate Way Guesthouse assistant. How can I help you today? Feel free to ask about our rooms, facilities, location, or anything else!",
       sender: 'bot',
       timestamp: new Date(),
     },
@@ -59,19 +43,19 @@ export function Chatbot() {
 
   const getBotResponse = async (userMessage: string): Promise<string> => {
     try {
-      console.log('🤖 Starting Gemini AI request...');
-      console.log('💬 User message:', userMessage);
+      console.log('Starting Gemini AI request...');
+      console.log('User message:', userMessage);
       
       const apiKey = import.meta.env.VITE_GEMINI_API_KEY || '';
-      console.log('🔑 Gemini API Key found:', apiKey ? 'YES (length: ' + apiKey.length + ')' : 'NO');
-      console.log('🔑 Full env check:', import.meta.env);
+      console.log('Gemini API Key found:', apiKey ? 'YES (length: ' + apiKey.length + ')' : 'NO');
+      console.log('Full env check:', import.meta.env);
       
       if (!apiKey) {
-        console.error('❌ Gemini API key not configured');
+        console.error('Gemini API key not configured');
         throw new Error('Gemini API key not configured');
       }
       
-      console.log('🌐 Making request to Gemini API...');
+      console.log('Making request to Gemini API...');
           const model = import.meta.env.VITE_GEMINI_MODEL || 'gemini-2.5-pro';
           const response = await fetch(
            `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`,
@@ -97,17 +81,17 @@ export function Chatbot() {
         }
       );
       
-      console.log('🌐 Gemini response status:', response.status);
-      console.log('🌐 Gemini response ok:', response.ok);
+      console.log('Gemini response status:', response.status);
+      console.log('Gemini response ok:', response.ok);
       
       if (!response.ok) {
         const errorText = await response.text();
-        console.error('❌ Gemini API request failed:', errorText);
+        console.error('Gemini API request failed:', errorText);
         throw new Error('API request failed');
       }
       
       const data = await response.json();
-      console.log('🤖 Gemini response data:', data);
+      console.log('Gemini response data:', data);
 
       // Extract text robustly from all parts
       const parts = data?.candidates?.[0]?.content?.parts ?? [];
@@ -131,7 +115,7 @@ export function Chatbot() {
         return "I'm having trouble answering that right now. Please try again in a moment, or contact us at +27 123 456 789 or info@senateway.co.za.";
       }
 
-      console.log('✅ Gemini response text:', joinedText);
+      console.log('Gemini response text:', joinedText);
       return joinedText;
     } catch (error) {
       console.error('Gemini API error:', error);
@@ -154,9 +138,6 @@ export function Chatbot() {
     setIsTyping(true);
 
     try {
-      // Track chatbot message sent
-      trackEvent('chatbot_message_sent', 'engagement', 'ai_chat');
-      
       const botResponseText = await getBotResponse(inputValue);
       const botResponse: Message = {
         id: messages.length + 2,
@@ -201,7 +182,7 @@ export function Chatbot() {
           </div>
           <h2 className="text-primary mb-4">AI Assistant</h2>
           <p className="max-w-2xl mx-auto text-muted-foreground">
-            Ask me anything about SenateWay Guesthouse - rooms, facilities, location, pricing, and more!
+            Ask me anything about Senate Way Guesthouse - rooms, facilities, location, pricing, and more!
           </p>
         </div>
 
@@ -250,7 +231,7 @@ export function Chatbot() {
                       <p className="whitespace-pre-line text-sm">{message.text}</p>
                       <p
                         className={`text-xs mt-2 ${
-                          message.sender === 'user' ? 'text-blue-100' : 'text-muted-foreground'
+                          message.sender === 'user' ? 'text-white/80' : 'text-muted-foreground'
                         }`}
                       >
                         {message.timestamp.toLocaleTimeString([], {
@@ -293,7 +274,11 @@ export function Chatbot() {
                   className="flex-1"
                   disabled={isTyping}
                 />
-                <Button onClick={handleSend} disabled={!inputValue.trim() || isTyping}>
+                <Button 
+                  onClick={handleSend} 
+                  disabled={!inputValue.trim() || isTyping}
+                  aria-label="Send message"
+                >
                   <Send className="w-4 h-4" />
                 </Button>
               </div>

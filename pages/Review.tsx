@@ -8,6 +8,7 @@ import { Label } from './ui/label';
 import { database } from '../firebaseConfig';
 import { ref, push, onValue, off } from 'firebase/database';
 import { useState, useEffect } from 'react';
+import { trackUserInteraction } from '../lib/analytics';
 
 interface Review {
   id: string;
@@ -137,6 +138,9 @@ export function Reviews() {
 
       // Push to Firebase
       await push(ref(database, 'reviews'), newReview);
+
+      // Track review submission
+      trackUserInteraction('review');
 
       // Reset form
       setFormData({
@@ -316,7 +320,6 @@ export function Reviews() {
                     <div>
                       <div className="flex items-center">
                         {[...Array(5)].map((_, i) => {
-                          const ratingValue = i + 1;
                           const filledPercentage = Math.max(0, Math.min(1, (averageRating - i)));
                           const isFull = filledPercentage >= 1;
                           const isPartial = filledPercentage > 0 && filledPercentage < 1;

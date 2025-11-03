@@ -10,49 +10,49 @@ const galleryImages = [
   {
     id: 2,
     url: '/images/Senate2.jpg',
-    title: 'Front Entrance',
+    title: 'Pool View',
     category: 'Exterior',
   },
   {
     id: 3,
     url: '/images/Senate3.jpg',
-    title: 'Garden View',
+    title: 'Braai Area',
     category: 'Exterior',
   },
   {
     id: 4,
     url: '/images/Senate4.jpg',
-    title: 'Swimming Pool Area',
+    title: 'Dining Room',
     category: 'Facilities',
   },
   {
     id: 5,
     url: '/images/Senate5.jpg',
-    title: 'Pool Deck',
+    title: 'Kitchen',
     category: 'Facilities',
   },
   {
     id: 6,
     url: '/images/Senate6.jpg',
-    title: 'BBQ Area',
+    title: 'Kitchen',
     category: 'Facilities',
   },
   {
     id: 7,
     url: '/images/Senate7.jpg',
-    title: 'Lounge Area',
+    title: 'Facilities Signage',
     category: 'Facilities',
   },
   {
     id: 8,
     url: '/images/Senate8.jpg',
-    title: 'Dining Area',
+    title: 'Bathroom Amenities',
     category: 'Facilities',
   },
   {
     id: 9,
     url: '/images/Senate9.jpg',
-    title: 'Standard Room',
+    title: 'Room 1',
     category: 'Rooms',
   },
   {
@@ -179,7 +179,7 @@ const galleryImages = [
 
 export function Gallery() {
   return (
-    <section className="py-16 bg-white">
+    <section className="py-16 bg-background">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-primary mb-4">Photo Gallery</h2>
@@ -205,7 +205,7 @@ export function Gallery() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
                 <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                  <p className="text-sm text-blue-200">{image.category}</p>
+                  <p className="text-sm text-white/90">{image.category}</p>
                   <h3 className="text-white">{image.title}</h3>
                 </div>
               </div>

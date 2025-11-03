@@ -1,5 +1,5 @@
 import { Card } from './ui/card';
-import { Waves, UtensilsCrossed, MapPin, ShieldCheck, Star } from 'lucide-react';
+import { Waves, UtensilsCrossed, MapPin, ShieldCheck } from 'lucide-react';
 import { ImageWithFallback } from './figma/ImageWithFallback';
 import { useRating } from '../hooks/useRating';
 
@@ -29,7 +29,7 @@ export function About() {
   ];
 
   return (
-    <section className="py-16 bg-white">
+    <section className="py-16 bg-background">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-primary mb-4">About Our Property</h2>
@@ -79,7 +79,7 @@ export function About() {
           <div className="grid md:grid-cols-3 gap-6 text-center">
             <div>
               <div className="flex items-center justify-center gap-1 mb-2">
-                <Star className="w-6 h-6 text-yellow-400 fill-yellow-400" />
+
                 <p className="text-3xl text-primary">{averageRating.toFixed(1)}</p>
               </div>
               <p className="text-muted-foreground">Overall Rating</p>

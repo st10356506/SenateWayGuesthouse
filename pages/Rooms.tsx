@@ -8,22 +8,6 @@ import { ImageWithFallback } from './figma/ImageWithFallback';
 import { database } from '../firebaseConfig';
 import { ref, push } from 'firebase/database';
 
-// Google Analytics tracking functions
-declare global {
-  interface Window {
-    gtag: (...args: any[]) => void;
-  }
-}
-
-const trackEvent = (action: string, category: string, label?: string) => {
-  if (typeof window !== 'undefined' && window.gtag) {
-    window.gtag('event', action, {
-      event_category: category,
-      event_label: label,
-    });
-  }
-};
-
 interface Room {
   id: number;
   name: string;
@@ -43,8 +27,8 @@ const rooms: Room[] = [
     capacity: 1,
     beds: '1 Single Bed',
     price: 450,
-    image: 'https://images.unsplash.com/photo-1655292912612-bb5b1bda9355?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBob3RlbCUyMGJlZHJvb218ZW58MXx8fHwxNzYxMTMzOTgxfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-    amenities: ['WiFi', 'Air Conditioning', 'Private Bathroom', 'TV'],
+    image: 'images/Senate14.jpg',
+    amenities: ['WiFi', 'Air Conditioning', 'Private Bathroom', 'TV', 'Coffee Maker'],
   },
   {
     id: 2,
@@ -53,8 +37,8 @@ const rooms: Room[] = [
     capacity: 2,
     beds: '1 Double Bed',
     price: 650,
-    image: 'https://images.unsplash.com/photo-1578683010236-d716f9a3f461?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjBob3RlbCUyMHJvb218ZW58MXx8fHwxNzYxMDc5OTg3fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-    amenities: ['WiFi', 'Air Conditioning', 'Private Bathroom', 'TV'],
+    image: 'images/Senate11.jpg',
+    amenities: ['WiFi', 'Air Conditioning', 'Private Bathroom', 'TV', 'Coffee Maker'],
   },
   {
     id: 3,
@@ -63,8 +47,8 @@ const rooms: Room[] = [
     capacity: 2,
     beds: '1 Queen Bed',
     price: 850,
-    image: 'https://images.unsplash.com/photo-1655292912612-bb5b1bda9355?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBob3RlbCUyMGJlZHJvb218ZW58MXx8fHwxNzYxMTMzOTgxfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-    amenities: ['WiFi', 'Air Conditioning', 'Private Bathroom', 'TV', 'Mini Fridge'],
+    image: 'images/Senate20.jpg',
+    amenities: ['WiFi', 'Air Conditioning', 'Private Bathroom', 'TV', 'Mini Fridge', 'Coffee Maker', 'Pool View', 'Coffee Maker'],
   },
   {
     id: 4,
@@ -73,8 +57,8 @@ const rooms: Room[] = [
     capacity: 2,
     beds: '2 Single Beds',
     price: 700,
-    image: 'https://images.unsplash.com/photo-1578683010236-d716f9a3f461?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjBob3RlbCUyMHJvb218ZW58MXx8fHwxNzYxMDc5OTg3fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-    amenities: ['WiFi', 'Air Conditioning', 'Private Bathroom', 'TV'],
+    image: 'images/Senate17.jpg',
+    amenities: ['WiFi', 'Air Conditioning', 'Private Bathroom', 'TV', 'Coffee Maker'],
   },
   {
     id: 5,
@@ -83,17 +67,17 @@ const rooms: Room[] = [
     capacity: 4,
     beds: '1 Double + 2 Singles',
     price: 1200,
-    image: 'https://images.unsplash.com/photo-1655292912612-bb5b1bda9355?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBob3RlbCUyMGJlZHJvb218ZW58MXx8fHwxNzYxMTMzOTgxfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-    amenities: ['WiFi', 'Air Conditioning', 'Private Bathroom', 'TV', 'Mini Fridge'],
+    image: 'images/Senate20.jpg',
+    amenities: ['WiFi', 'Air Conditioning', 'Private Bathroom', 'TV', 'Mini Fridge', 'Coffee Maker'],
   },
   {
     id: 6,
-    name: 'Superior Double Room',
+    name: 'Superior Room',
     size: 'large',
     capacity: 2,
     beds: '1 King Bed',
     price: 950,
-    image: 'https://images.unsplash.com/photo-1578683010236-d716f9a3f461?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjBob3RlbCUyMHJvb218ZW58MXx8fHwxNzYxMDc5OTg3fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
+    image: 'images/Senate18.jpg',
     amenities: ['WiFi', 'Air Conditioning', 'Private Bathroom', 'TV', 'Mini Fridge', 'Coffee Maker'],
   },
   {
@@ -103,8 +87,8 @@ const rooms: Room[] = [
     capacity: 1,
     beds: '1 Single Bed',
     price: 400,
-    image: 'https://images.unsplash.com/photo-1655292912612-bb5b1bda9355?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBob3RlbCUyMGJlZHJvb218ZW58MXx8fHwxNzYxMTMzOTgxfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-    amenities: ['WiFi', 'Air Conditioning', 'Shared Bathroom'],
+    image: 'images/Senate23.jpg',
+    amenities: ['WiFi', 'Air Conditioning', 'Shared Bathroom', 'Coffee Maker'],
   },
   {
     id: 8,
@@ -113,8 +97,8 @@ const rooms: Room[] = [
     capacity: 2,
     beds: '2 Single Beds',
     price: 800,
-    image: 'https://images.unsplash.com/photo-1578683010236-d716f9a3f461?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjBob3RlbCUyMHJvb218ZW58MXx8fHwxNzYxMDc5OTg3fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-    amenities: ['WiFi', 'Air Conditioning', 'Private Bathroom', 'TV', 'Mini Fridge'],
+    image: 'images/Senate29.jpg',
+    amenities: ['WiFi', 'Air Conditioning', 'Private Bathroom', 'TV', 'Mini Fridge', 'Coffee Maker'],
   },
   {
     id: 9,
@@ -123,7 +107,7 @@ const rooms: Room[] = [
     capacity: 2,
     beds: '1 King Bed',
     price: 1400,
-    image: 'https://images.unsplash.com/photo-1578683010236-d716f9a3f461?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjBob3RlbCUyMHJvb218ZW58MXx8fHwxNzYxMDc5OTg3fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
+    image: 'images/Senate14.jpg',
     amenities: ['WiFi', 'Air Conditioning', 'Private Bathroom', 'TV', 'Mini Fridge', 'Coffee Maker', 'Balcony'],
   },
   {
@@ -133,7 +117,7 @@ const rooms: Room[] = [
     capacity: 5,
     beds: '2 Double Beds + 1 Single',
     price: 1600,
-    image: 'https://images.unsplash.com/photo-1655292912612-bb5b1bda9355?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBob3RlbCUyMGJlZHJvb218ZW58MXx8fHwxNzYxMTMzOTgxfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
+    image: 'images/Senate10.jpg',
     amenities: ['WiFi', 'Air Conditioning', 'Private Bathroom', 'TV', 'Mini Fridge', 'Coffee Maker', 'Living Area'],
   },
 ];
@@ -173,28 +157,32 @@ export function Rooms() {
               </Select>
             </div>
 
-            <div>
+            <div className="min-h-[60px]">
               <label className="block mb-2">Minimum Capacity: {capacityFilter[0]} guest(s)</label>
-              <Slider
-                value={capacityFilter}
-                onValueChange={setCapacityFilter}
-                max={5}
-                min={1}
-                step={1}
-                className="mt-2"
-              />
+              <div className="px-2">
+                <Slider
+                  value={capacityFilter}
+                  onValueChange={setCapacityFilter}
+                  max={5}
+                  min={1}
+                  step={1}
+                  className="mt-2"
+                />
+              </div>
             </div>
 
-            <div>
+            <div className="min-h-[60px]">
               <label className="block mb-2">Max Price: R{priceRange[0]}</label>
-              <Slider
-                value={priceRange}
-                onValueChange={setPriceRange}
-                max={1600}
-                min={400}
-                step={50}
-                className="mt-2"
-              />
+              <div className="px-2">
+                <Slider
+                  value={priceRange}
+                  onValueChange={setPriceRange}
+                  max={1600}
+                  min={400}
+                  step={50}
+                  className="mt-2"
+                />
+              </div>
             </div>
           </div>
 
@@ -249,22 +237,16 @@ export function Rooms() {
                 </div>
 
                 <div className="flex flex-wrap gap-2 mb-4">
-                  {room.amenities.slice(0, 3).map((amenity, index) => (
+                  {room.amenities.map((amenity, index) => (
                     <span key={index} className="px-2 py-1 bg-secondary text-sm rounded">
                       {amenity}
                     </span>
                   ))}
-                  {room.amenities.length > 3 && (
-                    <span className="px-2 py-1 bg-secondary text-sm rounded">
-                      +{room.amenities.length - 3} more
-                    </span>
-                  )}
                 </div>
 
                 <Button 
                   className="w-full"
                   onClick={async () => {
-                    trackEvent('book_now_clicked', 'engagement', room.name);
                     // Save to Firebase
                     const bookingData = {
                       roomName: room.name,
