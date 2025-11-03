@@ -51,7 +51,7 @@ function App() {
   // Check if we're on the admin route (using hash or query parameter)
   useEffect(() => {
     const handleHashChange = () => {
-      if (window.location.hash === '#admin' || window.location.search.includes('admin=true')) {
+      if (window.location.hash === '#admin' || (window.location.search && window.location.search.includes('admin=true'))) {
         setCurrentPage('admin');
       }
     };
@@ -62,7 +62,7 @@ function App() {
   }, []);
 
   // Check if we're on the admin route
-  const isAdminRoute = currentPage === 'admin' || window.location.hash === '#admin' || window.location.search.includes('admin=true');
+  const isAdminRoute = currentPage === 'admin' || window.location.hash === '#admin' || (window.location.search && window.location.search.includes('admin=true'));
 
   if (isAdminRoute) {
     return (
