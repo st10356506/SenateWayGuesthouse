@@ -52,7 +52,7 @@ const galleryImages = [
   {
     id: 9,
     url: '/images/Senate9.jpg',
-    title: 'Room 1',
+    title: 'Deluxe Room',
     category: 'Rooms',
   },
   {
@@ -70,7 +70,7 @@ const galleryImages = [
   {
     id: 12,
     url: '/images/Senate12.jpg',
-    title: 'Executive Suite',
+    title: 'Modern Bathroom',
     category: 'Rooms',
   },
   {
@@ -82,37 +82,37 @@ const galleryImages = [
   {
     id: 14,
     url: '/images/Senate14.jpg',
-    title: 'Kitchen Facilities',
+    title: 'Single Room',
     category: 'Facilities',
   },
   {
     id: 15,
     url: '/images/Senate15.jpg',
-    title: 'Outdoor Seating',
+    title: 'Modern Bathroom',
     category: 'Facilities',
   },
   {
     id: 16,
     url: '/images/Senate16.jpg',
-    title: 'Garden Patio',
+    title: 'Modern Bathroom',
     category: 'Exterior',
   },
   {
     id: 17,
     url: '/images/Senate17.jpg',
-    title: 'Parking Area',
+    title: 'Double/Twin Room',
     category: 'Facilities',
   },
   {
     id: 18,
     url: '/images/Senate18.jpg',
-    title: 'Sun Terrace',
+    title: 'Single Room',
     category: 'Facilities',
   },
   {
     id: 19,
     url: '/images/Senate19.jpg',
-    title: 'Twin Room',
+    title: 'Deluxe Room',
     category: 'Rooms',
   },
   {
@@ -124,7 +124,7 @@ const galleryImages = [
   {
     id: 21,
     url: '/images/Senate21.jpg',
-    title: 'Single Room',
+    title: 'Dining Room',
     category: 'Rooms',
   },
   {
@@ -136,43 +136,43 @@ const galleryImages = [
   {
     id: 23,
     url: '/images/Senate23.jpg',
-    title: 'Room Amenities',
+    title: 'Pool Facing Room',
     category: 'Rooms',
   },
   {
     id: 24,
     url: '/images/Senate24.jpg',
-    title: 'Balcony View',
+    title: 'Dining Room',
     category: 'Rooms',
   },
   {
     id: 25,
     url: '/images/Senate25.jpg',
-    title: 'Property Grounds',
+    title: 'Braai Area',
     category: 'Exterior',
   },
   {
     id: 26,
     url: '/images/Senate26.jpg',
-    title: 'Outdoor Space',
+    title: 'Dining Area',
     category: 'Exterior',
   },
   {
     id: 27,
     url: '/images/Senate27.jpg',
-    title: 'Recreation Area',
+    title: 'Swimming Pool',
     category: 'Facilities',
   },
   {
     id: 28,
     url: '/images/Senate28.jpg',
-    title: 'Common Area',
+    title: 'Modern Bathroom',
     category: 'Facilities',
   },
   {
     id: 29,
     url: '/images/Senate29.jpg',
-    title: 'Guesthouse Overview',
+    title: 'Double/Twin Room',
     category: 'Exterior',
   },
 ];
